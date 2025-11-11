@@ -1,5 +1,5 @@
 
-name: CI - Maven WAR (Phase-1)
+name: CI - Maven WAR (Phase-1) - ci-user
 
 on:
   workflow_dispatch:
