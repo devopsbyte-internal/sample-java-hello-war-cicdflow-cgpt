@@ -19,7 +19,8 @@ jobs:
 
     steps:
       - name: Show run description
-        run: echo "Run Description: ${{ github.event.inputs.run_description }}"
+        run: | #multi-line due to yaml parser being picky of : after description
+          echo "Run Description: ${{ github.event.inputs.run_description }}"
 
       - name: Checkout
         uses: actions/checkout@v4
