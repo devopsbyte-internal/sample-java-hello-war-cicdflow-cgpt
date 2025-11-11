@@ -74,12 +74,6 @@ jobs:
           SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
           SONAR_ORG: ${{ vars.SONAR_ORG }}
         run: |
-          echo "============================"
-          echo "key = $SONAR_PROJECT_KEY"
-          echo "org = $SONAR_ORG"
-          echo "token = ${SONAR_TOKEN:0:5}*****"
-          echo "============================"
-
           mvn -B -ntp verify sonar:sonar \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=$SONAR_ORG \
