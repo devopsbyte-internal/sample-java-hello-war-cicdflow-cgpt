@@ -11,6 +11,11 @@ on:
         description: 'Description of this run'
         required: false
         default: 'Manual Trigger'
+      skip_sonar:
+        description: 'Skip SonarCloud Scan?'
+        type: boolean
+        required: false
+        default: true
 
 jobs:
   build:
@@ -24,6 +29,7 @@ jobs:
       - name: Show run description
         run: | #multi-line due to yaml parser being picky of : after description
           echo "Run Description: ${{ github.event.inputs.run_description }}"
+          echo "Skip SonarCloud Scan: ${{ github.event.inputs.skip_sonar }}"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -103,7 +109,8 @@ jobs:
 
       
       - name: SonarCloud Scan
-        if: always() # continue even if previous steps fail (like tests)
+        #if: always() # continue even if previous steps fail (like tests)
+        if: ${{ github.event.inputs.skip_sonar != true }}
         continue-on-error: true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -126,6 +133,14 @@ jobs:
       - name: Show artifact
         run: ls -l target/*.war || true
 
+
+      - name: Resolve project version
+        id: meta
+        shell: bash
+        run: |
+          VERS=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:3.5.1:exec)
+          echo "version=$VERS" >> $GITHUB_OUTPUT
+          echo "Resolved version: $VERS"
 
 
       - name: Upload WAR artifact
