@@ -76,7 +76,7 @@ jobs:
               </mirror>
             </mirrors>
           </settings>
-          XML    
+          XML
 
 
       - name: Check Maven cache after restore
