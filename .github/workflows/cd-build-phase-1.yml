@@ -23,5 +23,5 @@ jobs:
 
       - name: Run deploy.sh on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no {{ vars.EC2_USER}}@${{ vars.EC2_HOST }} \
+          ssh -o StrictHostKeyChecking=no ${{ vars.EC2_USER }}@${{ vars.EC2_HOST }} \
             "sudo /opt/deploy/deploy.sh '${{ github.event.inputs.deploy_version }}'"
