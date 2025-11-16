@@ -27,11 +27,11 @@ import java.io.PrintWriter;
 @WebServlet(
         name = "VersionServlet",
         urlPatterns = {
-                "/hello/version1",
-                "/hello/version2",
-                "/hello/version3",
-                "/hello/version4",
-                "/hello/version5"
+                "/version1",
+                "/version2",
+                "/version3",
+                "/version4",
+                "/version5"
         }
 )
 public class VersionServlet extends HttpServlet {
