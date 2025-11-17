@@ -35,7 +35,7 @@ resource "aws_security_group" "be_sg" {
     from_port   = 22 # start of port range
     to_port     = 22 # end of port range
     protocol    = "tcp"
-    cidr_blocks = [var.my_ip_cidr] # ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] #[var.my_ip_cidr]
   }
 
 
@@ -44,7 +44,7 @@ resource "aws_security_group" "be_sg" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [var.my_ip_cidr]
+    cidr_blocks = ["0.0.0.0/0"] #[var.my_ip_cidr]
   }
 
 
@@ -52,7 +52,7 @@ resource "aws_security_group" "be_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [var.my_ip_cidr]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
@@ -71,14 +71,14 @@ data "aws_vpc" "default" {
 
 data "aws_subnets" "default" {
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.default.id]
-}
+  }
 }
 
 # User data script: download & run bootstrap-tomcat.sh
 locals {
-  bootstrap_url = "https://raw.githubusercontent.com/devopsbyte-internal/proj-hellowar-java-service/infra/tomcat/bootstrap-tomcat.sh"
+  bootstrap_url = "https://raw.githubusercontent.com/devopsbyte-internal/proj-hellowar-java-service/refs/heads/main/infra/tomcat/bootstrap-tomcat.sh"
 }
 
 
