@@ -21,3 +21,8 @@ ssh -i your-key.pem ec2-user@<be_public_ip>
 sudo systemctl status tomcat
 sudo tail -n 50 /var/log/cloud-init-output.log
 
+
+
+# Resources:
+SG  : hellowar-be-sg
+EC2 : hellowar-tomcat-be

@@ -1,6 +1,7 @@
-# tf/userdata-tomcat.sh.tpl
-
 #!/usr/bin/env bash
+# Find first bash in path and run it (all linux distros, unless PATH badly manipulated)
+
+
 set -euo pipefail
 
 echo "[user_data] Starting backend bootstrap..." 
