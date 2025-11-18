@@ -151,6 +151,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ARTIFACTORY_URL: ${{ vars.JFROG_URL }}
       ARTIFACTORY_REPO: ${{ vars.JFROG_REPO }}
